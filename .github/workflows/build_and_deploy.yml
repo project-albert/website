@@ -1,0 +1,39 @@
+name: Build and Deploy to Firebase
+'on':
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 12.x ]
+        ruby: [ 2.6 ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node (${{ matrix.node-version }})
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Setup Ruby (${{ matrix.ruby }})
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      # Use GitHub Actions' cache to shorten build times and decrease load on servers
+      - name: using Jekyll Cache
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Build project
+        run: sh build.sh
+      - name: Installing Firebase
+        run: npm install -g firebase-tools
+      - name: Deploy to Firebase
+        env:
+          FIREBASE_CI_TOKEN: ${{ secrets.FIREBASE_CI_TOKEN }}
+        run: firebase deploy --token $FIREBASE_CI_TOKEN --non-interactive --only hosting
