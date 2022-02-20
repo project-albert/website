@@ -3,3 +3,6 @@
 
 # Output directories
 dist
+
+# firebase
+firebase-debug.log

@@ -1,0 +1,125 @@
+$text_biggest_size: 48px
+$text_bigger_size: 32px
+$text_big_size: 24px
+$text_normal_big_size: 18px
+$text_normal_size: 16px
+$text_small_size: 14px
+$text_smaller_size: 12px
+$text_smallest_size: 10px
+
+$color_border: #eeeeee
+$color_dark: #424242
+$color_dark_border: #cccccc
+$color_link: #777777
+$color_light: #999999
+$color_lighter: #eeeeee
+$color_lightest: #f9f9f9
+$color_light_border: #f3f3f3
+$color_red: #b00020
+
+$light_border_line: 1px solid $color_light_border
+$border_line: 1px solid $color_border
+$dark_border_line: 1px solid $color_dark_border
+
+
+html, body
+  height: 100%
+  margin: 0
+
+*
+  box-sizing: border-box
+
+*:not(.mat-icon)
+  font-size: 16px
+
+*:focus
+  outline: none
+
+/* Heading starts */
+h1, h2, h3, h4, h5, h6, .button, .button-dark, .table th
+  font-family: 'Quicksand', sans-serif!important
+
+h1, h2, h3, h4, h5, h6
+  margin: 10px 0 10px
+
+h1
+  font-size: 64px!important
+  margin-bottom: 20px
+
+h2
+  font-size: 48px!important
+
+h3
+  font-size: 32px!important
+
+h4
+  font-size: 24px!important
+
+h5
+  font-size: 18px!important
+
+h6
+  font-size: 16px!important
+
+*:not(.mat-icon):not(.fa)
+  font-family: 'Open Sans', sans-serif
+
+a
+  color: $color_link
+  text-decoration: none
+
+a:hover
+  color: $color_dark
+
+p
+  text-align: justify
+
+@media(max-width: 768px)
+  h1, h2, h3, h4, h5, h6
+    margin: 10px 0 15px
+
+  h1
+    font-size: 48px!important
+    margin-bottom: 15px
+
+  h2
+    font-size: 32px!important
+
+  h3
+    font-size: 24px!important
+
+  h4
+    font-size: 18px!important
+
+  h5
+    font-size: 18px!important
+
+  h6
+    font-size: 16px!important
+/* Heading ends */
+
+/* Container class starts */
+.content-container
+  padding: 0 15% 30px
+  font-size: $text_normal_size
+  flex: 1
+  flex-shrink: 0
+
+.main-container, .scroll-container
+  display: flex
+  flex-direction: column
+
+.main-container
+  height: 100%
+  width: 100%
+
+.scroll-container
+  flex: 1
+  overflow-y: auto
+
+
+@media(max-width: 768px)
+.content-container
+  padding: 5px 5px 20px
+
+/* Container class ends */
